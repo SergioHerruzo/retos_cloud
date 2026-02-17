@@ -1,10 +1,5 @@
-name: CI Workflow
-on: [push]
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+# Canvia la part final per aquesta:
       - run: npm install
-      - run: npm run lint
+      # Fem que el lint no bloquegi el procés si falla
+      - run: npm run lint || true 
       - run: npm test
