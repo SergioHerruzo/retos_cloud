@@ -1,0 +1,87 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --border: #cbd5e1;
+    --success-bg: #dcfce7;
+    --success-text: #166534;
+    --error-bg: #fee2e2;
+    --error-text: #991b1b;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 420px;
+}
+
+header h2 { margin: 0 0 0.5rem 0; color: var(--primary); }
+header p { margin: 0 0 1.5rem 0; color: #64748b; font-size: 0.9rem; }
+
+.form-group { margin-bottom: 1.25rem; }
+
+label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    font-weight: 500; 
+    font-size: 0.875rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    ring: 2px solid var(--primary);
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover { background-color: var(--primary-hover); }
+button:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+#status {
+    margin-top: 1.25rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    text-align: center;
+    display: none;
+}
+
+#status.success { display: block; background: var(--success-bg); color: var(--success-text); }
+#status.error { display: block; background: var(--error-bg); color: var(--error-text); }
