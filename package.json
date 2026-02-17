@@ -1,0 +1,10 @@
+{
+  "name": "aws-project",
+  "scripts": {
+    "lint": "npx prettier --check .",
+    "test": "ls index.html"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
