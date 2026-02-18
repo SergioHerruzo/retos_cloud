@@ -1,49 +1,37 @@
-// Substitueix amb la teva "Invoke URL" de l'API Gateway d'AWS Academy
+// Substitueix amb la teva URL d'API Gateway acabada en /prod/contact
 const API_URL = 'https://jjjg49h1sk.execute-api.us-east-1.amazonaws.com/prod/contact';
 
-const contactForm = document.getElementById('contactForm');
-const submitBtn = document.getElementById('submitBtn');
-const statusDiv = document.getElementById('status');
-
-contactForm.addEventListener('submit', async (e) => {
+document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // UI Feedback inicial
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Enviant dades...';
-    statusDiv.className = ''; 
-    statusDiv.style.display = 'none';
 
-    const formData = {
-        name: document.getElementById('name').value,
+    const data = {
+        name: document.getElementById('name').value, // Revisa que els IDs coincideixin amb l'HTML
         email: document.getElementById('email').value,
         message: document.getElementById('message').value
     };
 
+    console.log("Enviant dades:", data);
+
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
-            mode: 'cors', // Necessari per a API Gateway
+            mode: 'cors', // Forcem mode CORS
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(data)
         });
 
         if (response.ok) {
-            statusDiv.innerText = "S'ha guardat a DynamoDB amb èxit! ✅";
-            statusDiv.classList.add('success');
-            contactForm.reset();
+            alert('Missatge enviat correctament!');
+            e.target.reset(); // Neteja el formulari
         } else {
             const errorData = await response.json();
-            throw new Error(errorData.message || 'Error en la resposta');
+            console.error("Error de l'API:", errorData);
+            alert('Error al servidor: ' + (errorData.error || 'Desconegut'));
         }
-    } catch (err) {
-        console.error("Error d'enviamment:", err);
-        statusDiv.innerText = "Error: Comprova el LabRole o el CORS.";
-        statusDiv.classList.add('error');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = 'Enviar Missatge';
+    } catch (error) {
+        console.error("Error de xarxa:", error);
+        alert('No s\'ha pogut connectar amb el servidor.');
     }
 });
