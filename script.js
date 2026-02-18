@@ -1,5 +1,5 @@
 // Substitueix amb la teva "Invoke URL" de l'API Gateway d'AWS Academy
-const API_URL = 'https://jjjg49h1sk.execute-api.us-east-1.amazonaws.com/prod';
+const API_URL = 'https://jjjg49h1sk.execute-api.us-east-1.amazonaws.com/contact';
 
 const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
